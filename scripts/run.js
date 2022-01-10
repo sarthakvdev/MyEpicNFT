@@ -1,4 +1,4 @@
-const main = async () => {
+const run = async () => {
     // Compile the contract
     const nftContractFactory = await hre.ethers.getContractFactory("MyEpicNFT");
     // deploy it to local blockchain
@@ -16,14 +16,9 @@ const main = async () => {
     await txn.wait();
 };
 
-const runMain = async () => {
-    try {
-        await main();
-        process.exit(0);
-    } catch(error) {
-        console.log("Error: ", error);
+run()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.log("Error:", error);
         process.exit(1);
-    }
-};
-
-runMain();
+    });
